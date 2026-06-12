@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUnit - Quiz Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Home Screen -->
+        <div id="homeScreen" class="screen active">
+            <div class="container">
+                <h1 class="title">FUnit</h1>
+                <p class="subtitle">Learn & Play!</p>
+                <button class="btn btn-primary" onclick="goToGameMode()">Start Game</button>
+                <button class="btn btn-secondary" onclick="goToCreateMode()">Create Quiz</button>
+                <button class="btn btn-secondary" onclick="showAbout()">About</button>
+            </div>
+        </div>
+
+        <!-- Game Mode Selection -->
+        <div id="gameModeScreen" class="screen">
+            <div class="container">
+                <h2>Select Game Mode</h2>
+                <div class="modes-grid">
+                    <div class="mode-card" onclick="startGame('classic')">
+                        <div class="mode-icon">🎯</div>
+                        <h3>Classic</h3>
+                        <p>Answer questions correctly to score points</p>
+                    </div>
+                    <div class="mode-card" onclick="startGame('timed')">
+                        <div class="mode-icon">⏱️</div>
+                        <h3>Timed</h3>
+                        <p>Answer as many as you can in 60 seconds</p>
+                    </div>
+                    <div class="mode-card" onclick="startGame('multiplayer')">
+                        <div class="mode-icon">👥</div>
+                        <h3>Multiplayer</h3>
+                        <p>Compete with other players</p>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="backToHome()">Back</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="game-info">
+                    <span>Score: <strong id="score">0</strong></span>
+                    <span>Question: <strong id="questionCount">1</strong>/10</span>
+                </div>
+                <button class="btn-quit" onclick="endGame()">Quit</button>
+            </div>
+            <div class="game-container">
+                <div class="question-card">
+                    <h3 id="question" class="question-text"></h3>
+                    <div id="answersContainer" class="answers-grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="container">
+                <h2>Game Over!</h2>
+                <div class="results-card">
+                    <p class="final-score">Final Score: <strong id="finalScore">0</strong></p>
+                    <p class="stats">Correct Answers: <strong id="correctAnswers">0</strong>/10</p>
+                    <p class="stats">Accuracy: <strong id="accuracy">0</strong>%</p>
+                </div>
+                <button class="btn btn-primary" onclick="goToGameMode()">Play Again</button>
+                <button class="btn btn-secondary" onclick="backToHome()">Home</button>
+            </div>
+        </div>
+
+        <!-- Create Quiz Screen -->
+        <div id="createScreen" class="screen">
+            <div class="container">
+                <h2>Create a Quiz</h2>
+                <form id="quizForm" class="quiz-form">
+                    <div class="form-group">
+                        <label for="quizTitle">Quiz Title:</label>
+                        <input type="text" id="quizTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="quizDescription">Description:</label>
+                        <textarea id="quizDescription" rows="2"></textarea>
+                    </div>
+                    <div id="questionsContainer"></div>
+                    <button type="button" class="btn btn-secondary" onclick="addQuestion()">Add Question</button>
+                    <button type="submit" class="btn btn-primary">Save Quiz</button>
+                    <button type="button" class="btn btn-secondary" onclick="backToHome()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
